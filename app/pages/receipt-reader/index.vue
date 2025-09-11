@@ -1,0 +1,1 @@
+<template>Receipt Reader</template>

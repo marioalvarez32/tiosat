@@ -11,15 +11,21 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "@pinia/nuxt": "^0.11.2",
+    "@vueuse/core": "^13.9.0",
     "nuxt": "^4.1.1",
+    "pinia": "^3.0.3",
     "vue": "^3.5.21",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "vuetify-nuxt-module": "^0.18.7"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
-		"@semantic-release/exec": "^7.0.3",
-		"@semantic-release/git": "^10.0.1",
-		"@semantic-release/npm": "^12.0.1",
+    "@semantic-release/exec": "^7.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^12.0.1",
+    "sass-embedded": "^1.92.1",
     "semantic-release": "^24.2.3"
   }
 }
