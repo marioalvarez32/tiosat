@@ -1,20 +1,19 @@
 <template>
-	<v-dialog class="settings" v-model="isSettingsOpen" width="800" height="500">
-		<div class="settings__container">
-			<v-layout full-height>
-				<SettingsSidebar />
-				<SettingsMain />
-			</v-layout>
-			<div class="settings__close-btn">
-				<v-btn
-					icon="mdi-window-close"
-					variant="text"
-					size="x-small"
-					@click="toggleSettings"
-				/>
-			</div>
-		</div>
-	</v-dialog>
+  <v-dialog v-model="isSettingsOpen" class="settings" width="800" height="500">
+    <div class="settings__container">
+      <v-layout full-height>
+        <SettingsSidebar />
+        <SettingsMain />
+      </v-layout>
+      <div class="settings__close-btn">
+        <v-btn icon="mdi-window-close"
+               variant="text"
+               size="x-small"
+               @click="toggleSettings"
+        />
+      </div>
+    </div>
+  </v-dialog>
 </template>
 
 <script lang="ts">
@@ -24,21 +23,21 @@ import useSettingsModal from "~/composables/useSettingsModal";
 import { watch } from "vue";
 
 export default {
-	components: {
-		SettingsSidebar,
-		SettingsMain,
-	},
-	setup() {
-		const { isSettingsOpen, toggleSettings } = useSettingsModal();
+  components: {
+    SettingsSidebar,
+    SettingsMain,
+  },
+  setup() {
+    const { isSettingsOpen, toggleSettings } = useSettingsModal();
 
-		watch([isSettingsOpen.value], () => {
-			console.log("🚀 ~ watch ~ isSettingsOpen:", isSettingsOpen.value);
-		});
-		return {
-			isSettingsOpen,
-			toggleSettings,
-		};
-	},
+    watch([isSettingsOpen.value], () => {
+      console.log("🚀 ~ watch ~ isSettingsOpen:", isSettingsOpen.value);
+    });
+    return {
+      isSettingsOpen,
+      toggleSettings,
+    };
+  },
 };
 </script>
 

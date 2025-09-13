@@ -13,11 +13,9 @@ export default withNuxt(
       'stylistic/indent': ['error', 2],
       'vue/html-indent': ['error', 2],
       "vue/max-attributes-per-line": ["error", {
-        "singleline": {
-          "max": 4
-        },
+        "singleline": 4,
         "multiline": {
-          "max": 4
+          "max": 1
         }
       }],
       "vue/first-attribute-linebreak": ["error", {

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import SettingsPage from '../Models/SettingsPage';
-import SettingGroup from '../Models/SettingGroup';
-import SettingItem from '../Models/SettingItem';
+import type SettingsPage from '../Models/SettingsPage';
+import type SettingGroup from '../Models/SettingGroup';
+import type SettingItem from '../Models/SettingItem';
 import { SettingPageType } from '../Enums/SettingPageType';
 
 interface SettingsStore {

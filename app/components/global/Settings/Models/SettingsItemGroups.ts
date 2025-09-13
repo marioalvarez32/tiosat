@@ -1,4 +1,4 @@
-import SettingItem from './SettingItem';
+import type SettingItem from './SettingItem';
 
 export default class SettingsItemGroups {
   Name: string;

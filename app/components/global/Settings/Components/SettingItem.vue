@@ -1,19 +1,19 @@
 <template>
   <div class="setting-item">
-    <slot class="setting-item__action-container"></slot>
+    <slot class="setting-item__action-container"/>
     <div class="setting-item__description">
-      <p class="setting-item__description-title" v-html="label"></p>
-      <p class="v-label" v-html="description"></p>
+      <p class="setting-item__description-title" v-html="label"/>
+      <p class="v-label" v-html="description"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import type { PropType } from 'vue';
-import SettingItem from '../Models/SettingItem';
+import type SettingItem from '../Models/SettingItem';
 import { useSettingsStore } from '../Store/SettingsStore';
-import { toRefs } from 'vue';
-import { computed } from 'vue';
+import { toRefs, computed  } from 'vue';
+
 
 export default {
   props: {

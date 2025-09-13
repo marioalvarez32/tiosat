@@ -1,8 +1,17 @@
 <template>
   <div class="general-settings">
-    <SettingsItemGroup v-for="group in settingGroups" :key="group.Name" :title="group.Label" :description="group.Description" :setting-items="getSettingItemsByGroup(group.Name)">
+    <SettingsItemGroup v-for="group in settingGroups"
+                       :key="group.Name"
+                       :title="group.Label"
+                       :description="group.Description"
+                       :setting-items="getSettingItemsByGroup(group.Name)">
       <template #setting-item-action--theme>
-        <v-switch v-model="currentTheme" :label="`Modo: ${themeLabel}`" inset true-value="Light" false-value="Dark" hide-details />
+        <v-switch v-model="currentTheme"
+                  :label="`Modo: ${themeLabel}`"
+                  inset
+                  true-value="Light"
+                  false-value="Dark"
+                  hide-details />
       </template>
     </SettingsItemGroup>
   </div>

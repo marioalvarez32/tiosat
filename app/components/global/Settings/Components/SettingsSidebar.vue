@@ -2,12 +2,16 @@
   <div>
     <v-navigation-drawer class="settings__navigation">
       <h4>Configuración</h4>
-      <v-list density="compact" v-for="settingPage in settingPages" :key="settingPage.Name">
-        <v-list-item link active-color="primary" density="compact" :active="settingPage.Name === selectedSettingPage" @click="changeSettingPage(settingPage)">
-          <template v-slot:prepend>
-            <v-icon :icon="settingPage.Icon"></v-icon>
+      <v-list v-for="settingPage in settingPages" :key="settingPage.Name" density="compact">
+        <v-list-item link
+                     active-color="primary"
+                     density="compact"
+                     :active="settingPage.Name === selectedSettingPage"
+                     @click="changeSettingPage(settingPage)">
+          <template #prepend>
+            <v-icon :icon="settingPage.Icon"/>
           </template>
-          <v-list-item-title v-text="settingPage.Label"></v-list-item-title>
+          <v-list-item-title v-text="settingPage.Label"/>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -17,7 +21,7 @@
 <script lang="ts">
 import { toRefs } from 'vue';
 import { useSettingsStore } from '../Store/SettingsStore';
-import SettingsPage from '../Models/SettingsPage';
+import type SettingsPage from '../Models/SettingsPage';
 
 export default {
   setup() {
