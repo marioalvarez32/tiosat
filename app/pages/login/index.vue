@@ -57,6 +57,7 @@
 					also click "Forgot login password?" below to reset the login password.
 				</v-card-text>
 			</v-card> -->
+					<p v-if="loginError" class="text-red">{{ loginError }}</p>
 
 					<v-btn
 						class="mb-8"
@@ -89,18 +90,25 @@ const supabase = useSupabaseClient();
 const loading = ref(false);
 const email = ref("");
 const password = ref("");
+const loginError = ref("");
 
 const handleLogin = async () => {
 	try {
+		loginError.value = "";
 		loading.value = true;
 		const { error } = await supabase.auth.signInWithPassword({
 			email: email.value,
 			password: password.value,
 		});
 		if (error) throw error;
-		alert("Check your email for the login link!");
+		navigateTo("/");
 	} catch (error) {
-		alert(error.error_description || error.message);
+		if (
+			error.code == "validation_failed" ||
+			error.code == "invalid_credentials"
+		) {
+			loginError.value = "El correo o contraseña son incorrectos";
+		}
 	} finally {
 		loading.value = false;
 	}
