@@ -38,7 +38,7 @@ export default {
         return settings.value.theme.charAt(0).toUpperCase() + settings.value.theme.slice(1);
       },
       set: (value) => {
-        theme.global.name.value = value.toLowerCase();
+        theme.change(value.toLowerCase());
         settings.value.theme = value.toLowerCase();
       },
     });

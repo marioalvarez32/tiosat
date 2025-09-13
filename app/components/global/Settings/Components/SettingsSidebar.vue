@@ -4,7 +4,7 @@
       <h4>Configuración</h4>
       <v-list v-for="settingPage in settingPages" :key="settingPage.Name" density="compact">
         <v-list-item link
-                     active-color="primary"
+                     color="primary"
                      density="compact"
                      :active="settingPage.Name === selectedSettingPage"
                      @click="changeSettingPage(settingPage)">

@@ -10,7 +10,5 @@ export default function useSettingsModal() {
 }
 
 function toggleSettings() {
-  console.log("🚀 ~ toggleSettings ~ isSettingsOpen.value:", isSettingsOpen.value)
-
   isSettingsOpen.value = !isSettingsOpen.value;
 }

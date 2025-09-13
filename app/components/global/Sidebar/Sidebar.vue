@@ -7,11 +7,8 @@
                          rail-width="60"
     >
       <v-list :lines="false" density="default" nav class="sidebar__nav-list">
-        <template v-for="menuItem in navigationItems" :key="i">
-          <v-list-item :to="menuItem.Path"
-                       :active="isCurrentPage(menuItem.Path)"
-                       active-color="primary"
-          >
+        <template v-for="menuItem in navigationItems" :key="menuItem.Path">
+          <v-list-item :to="menuItem.Path":active="isCurrentPage(menuItem.Path)"color="primary">
             <template #prepend>
               <v-icon size="30" :icon="menuItem.Icon"/>
             </template>
@@ -19,7 +16,7 @@
           </v-list-item>
         </template>
         <div class="sidebar__setting-icon-wrapper">
-          <v-list-item link active-color="primary" @click="toggleSettings">
+          <v-list-item link color="primary" @click="toggleSettings">
             <template #prepend>
               <v-icon size="30" :icon="settingNav.Icon"/>
             </template>
@@ -40,7 +37,7 @@ export default {
       { Text: "Inicio", Path: "/", Icon: "mdi-home" },
       {
         Text: "Lector de RFC",
-        Path: "receipt-reader",
+        Path: "/receipt-reader",
         Icon: "mdi-file-multiple",
       },
     ];
@@ -53,7 +50,7 @@ export default {
 
     function isCurrentPage(path: string): boolean {
       const route = useRoute();
-      return route.name === path;
+      return route.path === path;
     }
 
     return {

@@ -30,9 +30,6 @@ export default {
   setup() {
     const { isSettingsOpen, toggleSettings } = useSettingsModal();
 
-    watch([isSettingsOpen.value], () => {
-      console.log("🚀 ~ watch ~ isSettingsOpen:", isSettingsOpen.value);
-    });
     return {
       isSettingsOpen,
       toggleSettings,
