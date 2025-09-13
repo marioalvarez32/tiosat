@@ -1,12 +1,12 @@
 <template>
 	<v-app>
 		<v-layout full-height>
-			<Sidebar />
+			<Sidebar v-if="user" />
 			<v-main>
 				<NuxtPage />
 			</v-main>
 		</v-layout>
-		<Settings />
+		<Settings v-if="user" />
 	</v-app>
 </template>
 
@@ -19,7 +19,15 @@ export default {
 		Sidebar,
 		Settings,
 	},
-	setup() {},
+	setup() {
+		const user = useSupabaseUser();
+		const session = useSupabaseSession();
+
+		return {
+			user,
+			session,
+		};
+	},
 };
 </script>
 
