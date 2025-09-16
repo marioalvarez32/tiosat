@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import { toRefs, ref , defineAsyncComponent , computed  } from 'vue';
-import { useSettingsStore } from '../Store/SettingsStore';
+import { useSettingsStore } from '../store/SettingsStore';
 	
 import { SettingPageType } from '../Enums/SettingPageType';
 	

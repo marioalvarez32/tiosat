@@ -11,7 +11,7 @@
 <script lang="ts">
 import type { PropType } from 'vue';
 import type SettingItem from '../Models/SettingItem';
-import { useSettingsStore } from '../Store/SettingsStore';
+import { useSettingsStore } from '../store/SettingsStore';
 import { toRefs, computed  } from 'vue';
 
 

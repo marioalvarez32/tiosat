@@ -32,4 +32,4 @@ export default defineNuxtConfig({
     },
     vuetifyOptions: './vuetify.config.ts', // <== you can omit it
   },
-})
+});

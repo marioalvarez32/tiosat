@@ -20,7 +20,7 @@
 <script lang="ts">
 import { toRefs, computed } from 'vue';
 import SettingsItemGroup from './SettingsItemGroup.vue';
-import { useSettingsStore } from '../Store/SettingsStore';
+import { useSettingsStore } from '../store/SettingsStore';
 import { useTheme } from 'vuetify';
 import useSettings from '../Composables/useSettings';
 

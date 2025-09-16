@@ -84,26 +84,26 @@
 <script setup>
 const supabase = useSupabaseClient();
 const loading = ref(false);
-const email = ref("");
-const password = ref("");
-const loginError = ref("");
+const email = ref('');
+const password = ref('');
+const loginError = ref('');
 
 const handleLogin = async () => {
   try {
-    loginError.value = "";
+    loginError.value = '';
     loading.value = true;
     const { error } = await supabase.auth.signInWithPassword({
       email: email.value,
       password: password.value,
     });
     if (error) throw error;
-    navigateTo("/");
+    navigateTo('/');
   } catch (error) {
     if (
-      error.code == "validation_failed" ||
-			error.code == "invalid_credentials"
+      error.code == 'validation_failed' ||
+			error.code == 'invalid_credentials'
     ) {
-      loginError.value = "El correo o contraseña son incorrectos";
+      loginError.value = 'El correo o contraseña son incorrectos';
     }
   } finally {
     loading.value = false;

@@ -8,19 +8,19 @@
     >
       <v-list :lines="false" density="default" nav class="sidebar__nav-list">
         <template v-for="menuItem in navigationItems" :key="menuItem.Path">
-          <v-list-item :to="menuItem.Path":active="isCurrentPage(menuItem.Path)"color="primary">
+          <v-list-item :to="menuItem.Path" :active="isCurrentPage(menuItem.Path)" color="primary">
             <template #prepend>
-              <v-icon size="30" :icon="menuItem.Icon"/>
+              <v-icon size="30" :icon="menuItem.Icon" />
             </template>
-            <v-list-item-title v-text="menuItem.Text"/>
+            <v-list-item-title v-text="menuItem.Text" />
           </v-list-item>
         </template>
         <div class="sidebar__setting-icon-wrapper">
           <v-list-item link color="primary" @click="toggleSettings">
             <template #prepend>
-              <v-icon size="30" :icon="settingNav.Icon"/>
+              <v-icon size="30" :icon="settingNav.Icon" />
             </template>
-            <v-list-item-title v-text="settingNav.Text"/>
+            <v-list-item-title v-text="settingNav.Text" />
           </v-list-item>
         </div>
       </v-list>
@@ -29,22 +29,22 @@
 </template>
 
 <script lang="ts">
-import useSettingsModal from "@/composables/useSettingsModal";
+import useSettingsModal from '@/composables/useSettingsModal';
 
 export default {
   setup() {
     const navigationItems = [
-      { Text: "Inicio", Path: "/", Icon: "mdi-home" },
+      { Text: 'Inicio', Path: '/', Icon: 'mdi-home' },
       {
-        Text: "Lector de RFC",
-        Path: "/receipt-reader",
-        Icon: "mdi-file-multiple",
+        Text: 'Lector de RFC',
+        Path: '/receipt-reader',
+        Icon: 'mdi-file-multiple',
       },
     ];
     const settingNav = {
-      Text: "Configuración",
-      Path: "/settings",
-      Icon: "mdi-cog",
+      Text: 'Configuración',
+      Path: '/settings',
+      Icon: 'mdi-cog',
     };
     const { toggleSettings } = useSettingsModal();
 

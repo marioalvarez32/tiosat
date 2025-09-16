@@ -33,19 +33,19 @@ export const useSettingsStore = defineStore('Settings', {
       {
         Name: 'theme',
         Label: 'Tema de Interfaz',
-        Description: `Este ajuste te permite cambiar el tema de la aplicación, dándole una apariencia y sensación diferentes a la interfaz de la aplicación`,
+        Description: 'Este ajuste te permite cambiar el tema de la aplicación, dándole una apariencia y sensación diferentes a la interfaz de la aplicación',
         SettingGroupName: 'interface-theme',
       },
       {
         Name: 'mercadolibre-app-id',
         Label: 'ID de la aplicación',
-        Description: `Este ID te permite interactuar con tu cuenta de MercadoLibre desde la aplicación. Para obtener este ID, crea una aplicación en MercadoLibre y copia el ID de la aplicación`,
+        Description: 'Este ID te permite interactuar con tu cuenta de MercadoLibre desde la aplicación. Para obtener este ID, crea una aplicación en MercadoLibre y copia el ID de la aplicación',
         SettingGroupName: 'mercadolibre-settings',
       },
       {
         Name: 'mercadolibre-app-url',
         Label: 'URL de la applicación de MercadoLibre',
-        Description: `La URL tiene que ser la misma que se uso para crear la applicación en MercadoLibre`,
+        Description: 'La URL tiene que ser la misma que se uso para crear la applicación en MercadoLibre',
         SettingGroupName: 'mercadolibre-settings',
       },
     ],
@@ -54,15 +54,15 @@ export const useSettingsStore = defineStore('Settings', {
   }),
   getters: {
     getSelectedSettingPage(state): SettingsPage | null {
-      const page = state.settingPages.find((settings) => settings.Name == state.selectedSettingPage);
+      const page = state.settingPages.find(settings => settings.Name == state.selectedSettingPage);
       if (page == undefined) return null;
       return page;
     },
     getSettingGroupsBySelectedPage(state): SettingGroup[] {
-      return state.settingGroups.filter((group) => group.SettingPage == state.selectedSettingPage);
+      return state.settingGroups.filter(group => group.SettingPage == state.selectedSettingPage);
     },
-    getSettingItemsByGroup: (state) => (groupName: string) => {
-      const items = state.settingItems.filter((item) => item.SettingGroupName === groupName);
+    getSettingItemsByGroup: state => (groupName: string) => {
+      const items = state.settingItems.filter(item => item.SettingGroupName === groupName);
       if (state.searchTerm == '' || state.searchTerm == null) return items;
       return items.filter((item) => {
         return item.Description.toLowerCase().includes(state.searchTerm.toLowerCase()) || item.Label.toLowerCase().includes(state.searchTerm.toLowerCase());
