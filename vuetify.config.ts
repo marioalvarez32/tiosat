@@ -5,7 +5,7 @@ import type { ThemeDefinition } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
-import useSettings from './app/components/global/Settings/Composables/useSettings';
+import useSettings from './app/components/ui/settings/composables/useSettings';
 import { defineVuetifyConfiguration } from 'vuetify-nuxt-module/custom-configuration';
 
 const { settings } = useSettings();

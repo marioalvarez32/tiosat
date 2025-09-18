@@ -11,8 +11,8 @@
 </template>
 
 <script lang="ts">
-  import Sidebar from "~/components/global/sidebar/Sidebar.vue";
-  import Settings from "~/components/global/settings/Settings.vue";
+  import Sidebar from "~/components/ui/sidebar/Sidebar.vue";
+  import Settings from "~/components/ui/settings/Settings.vue";
 
   export default {
     components: {
