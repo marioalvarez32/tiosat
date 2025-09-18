@@ -17,9 +17,9 @@
 </template>
 
 <script lang="ts">
-  import SettingsSidebar from '~/components/global/settings/components/SettingsSidebar.vue';
-  import SettingsMain from '~/components/global/settings/components/SettingsMain.vue';
-  import useSettingsModal from '~/composables/useSettingsModal';
+  import SettingsSidebar from '@/components/ui/settings/components/SettingsSidebar.vue';
+  import SettingsMain from '@/components/ui/settings/components/SettingsMain.vue';
+  import useSettingsModal from '@/composables/useSettingsModal';
 
   export default {
     components: {
