@@ -17,8 +17,8 @@
 </template>
 
 <script lang="ts">
-  import SettingsSidebar from '~/components/global/Settings/Components/SettingsSidebar.vue';
-  import SettingsMain from '~/components/global/Settings/Components/SettingsMain.vue';
+  import SettingsSidebar from '~/components/global/settings/components/SettingsSidebar.vue';
+  import SettingsMain from '~/components/global/settings/components/SettingsMain.vue';
   import useSettingsModal from '~/composables/useSettingsModal';
 
   export default {

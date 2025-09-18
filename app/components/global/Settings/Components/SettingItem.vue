@@ -10,7 +10,7 @@
 
 <script lang="ts">
   import type { PropType } from 'vue';
-  import type SettingItem from '../Models/SettingItem';
+  import type SettingItem from '../models/SettingItem';
   import { useSettingsStore } from '../store/SettingsStore';
   import { toRefs, computed  } from 'vue';
 

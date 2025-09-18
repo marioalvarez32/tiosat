@@ -21,7 +21,7 @@
 <script lang="ts">
   import { toRefs } from 'vue';
   import { useSettingsStore } from '../store/SettingsStore';
-  import type SettingsPage from '../Models/SettingsPage';
+  import type SettingsPage from '../models/SettingsPage';
 
   export default {
     setup() {

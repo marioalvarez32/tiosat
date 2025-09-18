@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
-import type SettingsPage from '../Models/SettingsPage';
-import type SettingGroup from '../Models/SettingGroup';
-import type SettingItem from '../Models/SettingItem';
-import { SettingPageType } from '../Enums/SettingPageType';
+import type SettingsPage from '../models/SettingsPage';
+import type SettingGroup from '../models/SettingGroup';
+import type SettingItem from '../models/SettingItem';
+import { SettingPageType } from '../enums/SettingPageType';
 
 interface SettingsStore {
   selectedSettingPage: string;

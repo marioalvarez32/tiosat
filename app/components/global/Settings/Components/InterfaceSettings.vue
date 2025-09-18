@@ -22,7 +22,7 @@
   import SettingsItemGroup from './SettingsItemGroup.vue';
   import { useSettingsStore } from '../store/SettingsStore';
   import { useTheme } from 'vuetify';
-  import useSettings from '../Composables/useSettings';
+  import useSettings from '../composables/useSettings';
 
   export default {
     components: {

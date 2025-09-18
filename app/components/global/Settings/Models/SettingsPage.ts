@@ -1,4 +1,4 @@
-import type { SettingPageType } from '../Enums/SettingPageType';
+import type { SettingPageType } from '../enums/SettingPageType';
 
 export default class SettingsPage {
   Name: SettingPageType;

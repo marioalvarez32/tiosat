@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-  import type SettingItemModel from '../Models/SettingItem';
+  import type SettingItemModel from '../models/SettingItem';
   import type { PropType } from 'vue';
   import SettingItem from './SettingItem.vue';
 
