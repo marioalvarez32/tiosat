@@ -1,25 +1,25 @@
 <template>
-  <div class="login-form">
-    <div class="login-form-wrapper">
-      <form @submit.prevent="handleLogin">
+  <div class='login-form'>
+    <div class='login-form-wrapper'>
+      <form @submit.prevent='handleLogin'>
         <!-- <v-img
 				class="mx-auto my-6"
 				max-width="228"
 				src="https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-v3-slim-text-light.svg"
 		></v-img> -->
 
-        <v-card class="mx-auto pa-12 pb-8"
-                elevation="8"
-                max-width="448"
-                rounded="lg"
+        <v-card class='mx-auto pa-12 pb-8'
+                elevation='8'
+                max-width='448'
+                rounded='lg'
                 primary>
-          <div class="text-subtitle-1 text-medium-emphasis">Account</div>
+          <div class='text-subtitle-1 text-medium-emphasis'>Account</div>
 
-          <v-text-field v-model="email"
-                        density="compact"
-                        placeholder="Email address"
-                        prepend-inner-icon="mdi-email-outline"
-                        variant="outlined"
+          <v-text-field v-model='email'
+                        density='compact'
+                        placeholder='Email address'
+                        prepend-inner-icon='mdi-email-outline'
+                        variant='outlined'
           />
 
           <!-- <div
@@ -37,14 +37,14 @@
 						>
 					</div> -->
 
-          <v-text-field v-model="password"
-                        :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-                        :type="visible ? 'text' : 'password'"
-                        density="compact"
-                        placeholder="Enter your password"
-                        prepend-inner-icon="mdi-lock-outline"
-                        variant="outlined"
-                        @click:append-inner="visible = !visible"
+          <v-text-field v-model='password'
+                        :append-inner-icon='visible ? &apos;mdi-eye-off&apos; : &apos;mdi-eye&apos;'
+                        :type='visible ? &apos;text&apos; : &apos;password&apos;'
+                        density='compact'
+                        placeholder='Enter your password'
+                        prepend-inner-icon='mdi-lock-outline'
+                        variant='outlined'
+                        @click:append-inner='visible = !visible'
           />
 
           <!-- <v-card class="mb-12" color="surface-variant" variant="tonal">
@@ -54,14 +54,14 @@
 					also click "Forgot login password?" below to reset the login password.
 				</v-card-text>
 			</v-card> -->
-          <p v-if="loginError" class="text-red">{{ loginError }}</p>
+          <p v-if='loginError' class='text-red'>{{ loginError }}</p>
 
-          <v-btn class="mb-8"
-                 color="blue"
-                 size="large"
-                 variant="tonal"
+          <v-btn class='mb-8'
+                 color='blue'
+                 size='large'
+                 variant='tonal'
                  block
-                 @click="handleLogin"
+                 @click='handleLogin'
           >
             Log In
           </v-btn>
@@ -82,33 +82,33 @@
   </div>
 </template>
 <script setup>
-const supabase = useSupabaseClient();
-const loading = ref(false);
-const email = ref('');
-const password = ref('');
-const loginError = ref('');
+  const supabase = useSupabaseClient();
+  const loading = ref(false);
+  const email = ref('');
+  const password = ref('');
+  const loginError = ref('');
 
-const handleLogin = async () => {
-  try {
-    loginError.value = '';
-    loading.value = true;
-    const { error } = await supabase.auth.signInWithPassword({
-      email: email.value,
-      password: password.value,
-    });
-    if (error) throw error;
-    navigateTo('/');
-  } catch (error) {
-    if (
-      error.code == 'validation_failed' ||
-			error.code == 'invalid_credentials'
-    ) {
-      loginError.value = 'El correo o contraseña son incorrectos';
+  const handleLogin = async () => {
+    try {
+      loginError.value = '';
+      loading.value = true;
+      const { error } = await supabase.auth.signInWithPassword({
+        email: email.value,
+        password: password.value,
+      });
+      if (error) throw error;
+      navigateTo('/');
+    } catch (error) {
+      if (
+        error.code == 'validation_failed' ||
+        error.code == 'invalid_credentials'
+      ) {
+        loginError.value = 'El correo o contraseña son incorrectos';
+      }
+    } finally {
+      loading.value = false;
     }
-  } finally {
-    loading.value = false;
-  }
-};
+  };
 </script>
 
 <style lang="scss" scoped>

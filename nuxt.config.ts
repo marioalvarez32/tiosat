@@ -4,15 +4,10 @@ export default defineNuxtConfig({
     'vuetify-nuxt-module',
     '@pinia/nuxt',
     '@nuxtjs/supabase',
-    '@nuxt/eslint',
+    '@nuxtjs/google-fonts',
   ],
   devtools: { enabled: true },
   css: ['@mdi/font/css/materialdesignicons.css'],
-  eslint: {
-    config: {
-      stylistic: true,
-    },
-  },
   runtimeConfig: {
     // Keys in here are ONLY available on the server-side.
     // Use this for secret keys like the Supabase service_role key.
@@ -26,10 +21,16 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2025-07-15',
+  googleFonts: {
+    families: {
+      Roboto: [300, 400, 500, 700, 900],
+    },
+    // Optional: Add more configuration options like preconnect, display, subsets, etc.
+  },
   vuetify: {
     moduleOptions: {
       /* module specific options */
     },
     vuetifyOptions: './vuetify.config.ts', // <== you can omit it
   },
-});
+})

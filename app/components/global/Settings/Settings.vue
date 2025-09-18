@@ -1,15 +1,15 @@
 <template>
-  <v-dialog v-model="isSettingsOpen" class="settings" width="800" height="500">
-    <div class="settings__container">
+  <v-dialog v-model='isSettingsOpen' class='settings' width='800' height='500'>
+    <div class='settings__container'>
       <v-layout full-height>
         <SettingsSidebar />
         <SettingsMain />
       </v-layout>
-      <div class="settings__close-btn">
-        <v-btn icon="mdi-window-close"
-               variant="text"
-               size="x-small"
-               @click="toggleSettings"
+      <div class='settings__close-btn'>
+        <v-btn icon='mdi-window-close'
+               variant='text'
+               size='x-small'
+               @click='toggleSettings'
         />
       </div>
     </div>
@@ -17,24 +17,24 @@
 </template>
 
 <script lang="ts">
-import SettingsSidebar from '~/components/global/Settings/Components/SettingsSidebar.vue';
-import SettingsMain from '~/components/global/Settings/Components/SettingsMain.vue';
-import useSettingsModal from '~/composables/useSettingsModal';
+  import SettingsSidebar from '~/components/global/Settings/Components/SettingsSidebar.vue';
+  import SettingsMain from '~/components/global/Settings/Components/SettingsMain.vue';
+  import useSettingsModal from '~/composables/useSettingsModal';
 
-export default {
-  components: {
-    SettingsSidebar,
-    SettingsMain,
-  },
-  setup() {
-    const { isSettingsOpen, toggleSettings } = useSettingsModal();
+  export default {
+    components: {
+      SettingsSidebar,
+      SettingsMain,
+    },
+    setup() {
+      const { isSettingsOpen, toggleSettings } = useSettingsModal();
 
-    return {
-      isSettingsOpen,
-      toggleSettings,
-    };
-  },
-};
+      return {
+        isSettingsOpen,
+        toggleSettings,
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

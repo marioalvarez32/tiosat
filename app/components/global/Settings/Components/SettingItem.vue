@@ -1,47 +1,47 @@
 <template>
-  <div class="setting-item">
-    <slot class="setting-item__action-container"/>
-    <div class="setting-item__description">
-      <p class="setting-item__description-title" v-html="label"/>
-      <p class="v-label" v-html="description"/>
+  <div class='setting-item'>
+    <slot class='setting-item__action-container'/>
+    <div class='setting-item__description'>
+      <p class='setting-item__description-title' v-html='label'/>
+      <p class='v-label' v-html='description'/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import type SettingItem from '../Models/SettingItem';
-import { useSettingsStore } from '../store/SettingsStore';
-import { toRefs, computed  } from 'vue';
+  import type { PropType } from 'vue';
+  import type SettingItem from '../Models/SettingItem';
+  import { useSettingsStore } from '../store/SettingsStore';
+  import { toRefs, computed  } from 'vue';
 
 
-export default {
-  props: {
-    settingItem: {
-      type: Object as PropType<SettingItem>,
-      required: true,
+  export default {
+    props: {
+      settingItem: {
+        type: Object as PropType<SettingItem>,
+        required: true,
+      },
     },
-  },
-  setup(props) {
-    const settingStore = useSettingsStore();
-    const { searchTerm } = toRefs(settingStore);
+    setup(props) {
+      const settingStore = useSettingsStore();
+      const { searchTerm } = toRefs(settingStore);
 
-    const description = computed<string>(() => highlightText(props.settingItem.Description, searchTerm.value));
-    const label = computed<string>(() => highlightText(`${props.settingItem.Label}`, searchTerm.value));
+      const description = computed<string>(() => highlightText(props.settingItem.Description, searchTerm.value));
+      const label = computed<string>(() => highlightText(`${props.settingItem.Label}`, searchTerm.value));
 
-    function highlightText(text: string, searchTerm: string): string {
-      if (!searchTerm || !text.toLowerCase().includes(searchTerm)) return text;
-      const startIndex = text.toLowerCase().indexOf(searchTerm.toLowerCase());
-      const endIndex = startIndex + searchTerm.length;
-      return text.substring(0, startIndex) + '<mark>' + text.substring(startIndex, endIndex) + '</mark>' + text.substring(endIndex);
-    }
+      function highlightText(text: string, searchTerm: string): string {
+        if (!searchTerm || !text.toLowerCase().includes(searchTerm)) return text;
+        const startIndex = text.toLowerCase().indexOf(searchTerm.toLowerCase());
+        const endIndex = startIndex + searchTerm.length;
+        return text.substring(0, startIndex) + '<mark>' + text.substring(startIndex, endIndex) + '</mark>' + text.substring(endIndex);
+      }
 
-    return {
-      description,
-      label,
-    };
-  },
-};
+      return {
+        description,
+        label,
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

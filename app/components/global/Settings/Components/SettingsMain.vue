@@ -1,68 +1,68 @@
 <template>
-  <v-main style="min-height: 300px">
-    <div class="settings-content">
-      <div class="settings-content__header">
-        <div class="settings-content__header-container">
+  <v-main style='min-height: 300px'>
+    <div class='settings-content'>
+      <div class='settings-content__header'>
+        <div class='settings-content__header-container'>
           <div>
             <h2>{{ selectedSettingPage?.Label }}</h2>
-            <p class="v-label">{{ selectedSettingPage?.Description }}</p>
+            <p class='v-label'>{{ selectedSettingPage?.Description }}</p>
           </div>
-          <div class="settings-content__header-search-wrapper">
-            <v-text-field v-model="searchTerm"
-                          class="settings-content__header-search"
+          <div class='settings-content__header-search-wrapper'>
+            <v-text-field v-model='searchTerm'
+                          class='settings-content__header-search'
                           clearable
-                          label="Buscar"
+                          label='Buscar'
                           hide-details
-                          density="compact"
-                          variant="outlined"
+                          density='compact'
+                          variant='outlined'
                           single-line
-                          append-inner-icon="mdi-magnify"
+                          append-inner-icon='mdi-magnify'
             />
           </div>
         </div>
       </div>
       <v-divider/>
-      <component :is="settingPageComponent" v-if="settingPageComponent"/>
+      <component :is='settingPageComponent' v-if='settingPageComponent'/>
       <v-overlay v-else persistent contained>
-        <v-progress-circular :size="75" color="primary" indeterminate/>
+        <v-progress-circular :size='75' color='primary' indeterminate/>
       </v-overlay>
     </div>
   </v-main>
 </template>
 
 <script lang="ts">
-import { toRefs, ref , defineAsyncComponent , computed  } from 'vue';
-import { useSettingsStore } from '../store/SettingsStore';
+  import { toRefs, ref , defineAsyncComponent , computed  } from 'vue';
+  import { useSettingsStore } from '../store/SettingsStore';
 	
-import { SettingPageType } from '../Enums/SettingPageType';
+  import { SettingPageType } from '../Enums/SettingPageType';
 	
 	
 
-export default {
-  components: {},
-  setup() {
-    const settingsStore = useSettingsStore();
-    const { getSelectedSettingPage: selectedSettingPage, searchTerm } = toRefs(settingsStore);
-    const isLoadingComponent = ref(false);
+  export default {
+    components: {},
+    setup() {
+      const settingsStore = useSettingsStore();
+      const { getSelectedSettingPage: selectedSettingPage, searchTerm } = toRefs(settingsStore);
+      const isLoadingComponent = ref(false);
 
-    const settingPageComponent = computed(() => {
-      /**
-				 * Would have loved to do this in a different way but importing this in the same component avoids rendering issues.
-				 */
-      switch (selectedSettingPage.value?.Name) {
+      const settingPageComponent = computed(() => {
+        /**
+         * Would have loved to do this in a different way but importing this in the same component avoids rendering issues.
+         */
+        switch (selectedSettingPage.value?.Name) {
         case SettingPageType.Interface:
           return defineAsyncComponent(() => import('./InterfaceSettings.vue'));
-      }
-    });
+        }
+      });
 
-    return {
-      selectedSettingPage,
-      searchTerm,
-      settingPageComponent,
-      isLoadingComponent,
-    };
-  },
-};
+      return {
+        selectedSettingPage,
+        searchTerm,
+        settingPageComponent,
+        isLoadingComponent,
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
