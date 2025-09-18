@@ -1,5 +1,5 @@
 import { useStorage } from '@vueuse/core';
-import { DefaultSettings } from '../constants/DefaultSettings';
+import { DefaultSettings } from '~/components/global/settings/constants/DefaultSettings';
 
 const settings = useStorage('user-settings', DefaultSettings);
 
