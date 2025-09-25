@@ -1,9 +1,9 @@
 // @ts-check
-import stylistic from '@stylistic/eslint-plugin'
-import pluginVue from 'eslint-plugin-vue'
-import typescript from '@typescript-eslint/eslint-plugin'
-import typescriptParser from '@typescript-eslint/parser'
-import vueParser from 'vue-eslint-parser'
+import stylistic from '@stylistic/eslint-plugin';
+import pluginVue from 'eslint-plugin-vue';
+import typescript from '@typescript-eslint/eslint-plugin';
+import typescriptParser from '@typescript-eslint/parser';
+import vueParser from 'vue-eslint-parser';
 
 export default [
   {
@@ -20,6 +20,7 @@ export default [
       },
     },
     rules: {
+      'semi': ['error'],
       'stylistic/indent': ['error', 2],
       'stylistic/member-delimiter-style': ['error', {
         multiline: {
@@ -51,6 +52,7 @@ export default [
     },
     rules: {
       ...pluginVue.configs.recommended.rules,
+      'semi': ['error'],
       'vue/html-indent': ['error', 2],
       'vue/max-attributes-per-line': ['error', {
         singleline: 4,
@@ -66,4 +68,4 @@ export default [
       'vue/script-indent': ['error', 2, { baseIndent: 1 }],
     },
   },
-]
+];
