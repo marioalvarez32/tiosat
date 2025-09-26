@@ -23,6 +23,14 @@
             <v-list-item-title v-text='settingNav.Text' />
           </v-list-item>
         </div>
+        <div class='sidebar__setting-icon-wrapper'>
+          <v-list-item link color='primary' @click='toggleSettings'>
+            <template #prepend>
+              <v-icon size='30' :icon='settingNav.Icon' />
+            </template>
+            <v-list-item-title v-text='settingNav.Text' />
+          </v-list-item>
+        </div>
       </v-list>
     </v-navigation-drawer>
   </div>
@@ -39,6 +47,11 @@
           Text: 'Lector de RFC',
           Path: '/receipt-reader',
           Icon: 'mdi-file-multiple',
+        },
+        {
+          Text: 'Cargar CFDI',
+          Path: '/uploader',
+          Icon: 'mdi-upload',
         },
       ];
       const settingNav = {
