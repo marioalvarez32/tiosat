@@ -44,6 +44,8 @@ const light: ThemeDefinition = {
     onSurface: '#000000',
     sidebarPrimary: '#3b3b3b',
     sidebarBackground: '#FFFFFF',
+    'grey-lighten-2': '#E0E0E0',
+    'grey-lighten-3': '#EEEEEE',
   },
 };
 
@@ -52,9 +54,8 @@ export default defineVuetifyConfiguration({
     defaultSet: 'mdi',
   },
   theme: {
-    defaultTheme: settings.value.theme,
+    defaultTheme: 'light',
     themes: {
-      dark,
       light,
     },
   },

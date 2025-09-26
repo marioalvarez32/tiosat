@@ -1,5 +1,5 @@
 export const DefaultSettings = {
-  theme: 'dark',
+  theme: 'light',
   mercadoLibreAppId: '',
   mercadoLibreAppUrl: '',
 };
