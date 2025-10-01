@@ -1,29 +1,29 @@
 <template>
-  <div class='uploader'>
-    <div class='uploader__dropzone'>
+  <div class="uploader">
+    <div class="uploader__dropzone">
       <h1>Cargar CFDI</h1>
-      <v-file-upload v-model='draggedFiles' density='default'>
+      <v-file-upload v-model="draggedFiles" density="default">
         <template #browse>
-          <v-btn color='primary' size='large' variant='elevated' @click='openDirectoryPicker'>Seleccionar directorio</v-btn>
+          <v-btn color="primary" size="large" variant="elevated" @click="openDirectoryPicker">Seleccionar directorio</v-btn>
         </template>
         <template #item></template>
       </v-file-upload>
     </div>
-    <div class='uploader__stage'>
-      <div class='uploader__stage-header'>
+    <div class="uploader__stage">
+      <div class="uploader__stage-header">
         <h2>Lista de carga</h2>
-        <div class='uploader__stage-content'>
+        <div class="uploader__stage-content">
           <v-divider></v-divider>   
-          <UploaderStageTable :file-list='fileUploadingList'/>
+          <UploaderStageTable :file-list="fileUploadingList"/>
         </div>
       </div>
     </div>
-    <div class='uploader__stage-actions'>
-      <v-btn color='primary'
-             size='large'
-             variant='elevated'
-             :disabled='shouldDisableProcessingButton'
-             @click='startProcessingFiles'>Cargar Archivos</v-btn>
+    <div class="uploader__stage-actions">
+      <v-btn color="primary"
+             size="large"
+             variant="elevated"
+             :disabled="shouldDisableProcessingButton"
+             @click="startProcessingFiles">Cargar Archivos</v-btn>
     </div>
   </div>
 </template>

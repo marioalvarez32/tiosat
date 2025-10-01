@@ -1,19 +1,19 @@
 <template>
-  <div class='uploader-stage-table'>
+  <div class="uploader-stage-table">
     <v-table >
       <thead>
         <tr>
-          <th class='text-left'>
+          <th class="text-left">
             Nombre de Archivo
           </th>
-          <th class='text-left'>
+          <th class="text-left">
             Estado
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for='item in fileList'
-            :key='item.filePath'
+        <tr v-for="item in fileList"
+            :key="item.filePath"
         >
           <td>{{ item.filePath }}</td>
           <td>{{ item.status }}</td>

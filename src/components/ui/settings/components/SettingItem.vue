@@ -1,9 +1,9 @@
 <template>
-  <div class='setting-item'>
-    <slot class='setting-item__action-container'/>
-    <div class='setting-item__description'>
-      <p class='setting-item__description-title' v-html='label'/>
-      <p class='v-label' v-html='description'/>
+  <div class="setting-item">
+    <slot class="setting-item__action-container"/>
+    <div class="setting-item__description">
+      <p class="setting-item__description-title" v-html="label"/>
+      <p class="v-label" v-html="description"/>
     </div>
   </div>
 </template>

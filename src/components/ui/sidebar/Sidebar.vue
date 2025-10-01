@@ -1,21 +1,21 @@
 <template>
-  <div class='sidebar'>
-    <v-navigation-drawer elevation='10'
+  <div class="sidebar">
+    <v-navigation-drawer elevation="10"
                          permanent
                          expand-on-hover
                          rail
-                         rail-width='60'
+                         rail-width="60"
     >
-      <v-list :lines='false' density='default' nav class='sidebar__nav-list'>
-        <template v-for='menuItem in navigationItems' :key='menuItem.Path'>
-          <v-list-item :to='menuItem.Path' :active='isCurrentPage(menuItem.Path)' color='primary'>
+      <v-list :lines="false" density="default" nav class="sidebar__nav-list">
+        <template v-for="menuItem in navigationItems" :key="menuItem.Path">
+          <v-list-item :to="menuItem.Path" :active="isCurrentPage(menuItem.Path)" color="primary">
             <template #prepend>
-              <v-icon size='30' :icon='menuItem.Icon' />
+              <v-icon size="30" :icon="menuItem.Icon" />
             </template>
-            <v-list-item-title v-text='menuItem.Text' />
+            <v-list-item-title v-text="menuItem.Text" />
           </v-list-item>
         </template>
-        <div class='sidebar__setting-icon-wrapper'>
+        <div class="sidebar__setting-icon-wrapper">
           <!-- <v-list-item link color='primary' @click='toggleSettings'>
             <template #prepend>
               <v-icon size='30' :icon='settingNav.Icon' />

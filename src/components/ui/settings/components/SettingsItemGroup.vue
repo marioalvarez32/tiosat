@@ -1,12 +1,12 @@
 <template>
-  <div v-if='settingItems.length > 0' class='setting-item-group'>
-    <div class='setting-item-group__description'>
-      <p class='setting-item-group__description-title'>{{ title }}</p>
-      <p class='v-label'>{{ description }}</p>
+  <div v-if="settingItems.length > 0" class="setting-item-group">
+    <div class="setting-item-group__description">
+      <p class="setting-item-group__description-title">{{ title }}</p>
+      <p class="v-label">{{ description }}</p>
     </div>
-    <div class='setting-item-group__items-container'>
-      <SettingItem v-for='settingItem in settingItems' :key='settingItem.Name' :setting-item='settingItem'>
-        <slot class='setting-item__action-container' :name='`setting-item-action--${settingItem.Name}`' />
+    <div class="setting-item-group__items-container">
+      <SettingItem v-for="settingItem in settingItems" :key="settingItem.Name" :setting-item="settingItem">
+        <slot class="setting-item__action-container" :name="`setting-item-action--${settingItem.Name}`" />
       </SettingItem>
     </div>
   </div>
