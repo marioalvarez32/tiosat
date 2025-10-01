@@ -1,0 +1,113 @@
+<template>
+  <div class='sidebar'>
+    <v-navigation-drawer elevation='10'
+                         permanent
+                         expand-on-hover
+                         rail
+                         rail-width='60'
+    >
+      <v-list :lines='false' density='default' nav class='sidebar__nav-list'>
+        <template v-for='menuItem in navigationItems' :key='menuItem.Path'>
+          <v-list-item :to='menuItem.Path' :active='isCurrentPage(menuItem.Path)' color='primary'>
+            <template #prepend>
+              <v-icon size='30' :icon='menuItem.Icon' />
+            </template>
+            <v-list-item-title v-text='menuItem.Text' />
+          </v-list-item>
+        </template>
+        <div class='sidebar__setting-icon-wrapper'>
+          <!-- <v-list-item link color='primary' @click='toggleSettings'>
+            <template #prepend>
+              <v-icon size='30' :icon='settingNav.Icon' />
+            </template>
+            <v-list-item-title v-text='settingNav.Text' />
+          </v-list-item> -->
+        </div>
+      </v-list>
+    </v-navigation-drawer>
+  </div>
+</template>
+
+<script lang="ts">
+  import useSettingsModal from '@/composables/useSettingsModal';
+  import { useRoute } from 'vue-router';
+
+  export default {
+    setup() {
+      const navigationItems = [
+        { Text: 'Inicio', Path: '/', Icon: 'mdi-home' },
+        {
+          Text: 'Lector de RFC',
+          Path: '/receipt-viewer',
+          Icon: 'mdi-file-multiple',
+        },
+        {
+          Text: 'Cargar CFDI',
+          Path: '/uploader',
+          Icon: 'mdi-upload',
+        },
+      ];
+      const settingNav = {
+        Text: 'Configuración',
+        Path: '/settings',
+        Icon: 'mdi-cog',
+      };
+      const { toggleSettings } = useSettingsModal();
+
+      function isCurrentPage(path: string): boolean {
+        const route = useRoute();
+        return route.path === path;
+      }
+
+      return {
+        selectedItem: 1,
+        navigationItems,
+        settingNav,
+        toggleSettings,
+        isCurrentPage,
+      };
+    },
+  };
+</script>
+
+<style lang="scss" scoped>
+.sidebar {
+}
+
+:deep(.v-navigation-drawer) {
+	background-color: rgb(var(--v-theme-sidebarBackground));
+	font-weight: 200;
+	border-right: none;
+}
+
+:deep(.v-navigation-drawer__content) {
+	margin-top: 50px;
+}
+
+:deep(.v-list-item-title) {
+	margin: 0;
+	line-height: 30px;
+	font-size: 15px;
+	position: relative;
+	display: block;
+	height: auto;
+	white-space: nowrap;
+}
+
+:deep(.v-list.v-list--nav) {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	gap: 5px;
+}
+
+:deep(.v-list-item__prepend > .v-icon) {
+	margin-inline-end: 20px;
+}
+
+.sidebar__setting-icon-wrapper {
+	display: flex;
+	align-items: flex-end;
+	height: 100%;
+}
+</style>

@@ -66,6 +66,7 @@ export default [
       }],
       'vue/html-quotes': ['error', 'single'],
       'vue/script-indent': ['error', 2, { baseIndent: 1 }],
+      'vue/html-quotes': ['error', 'double'], // or 'single'
     },
   },
 ];

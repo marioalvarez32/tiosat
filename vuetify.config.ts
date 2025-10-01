@@ -5,33 +5,14 @@ import type { ThemeDefinition } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
-import useSettings from './app/components/ui/settings/composables/useSettings';
-import { defineVuetifyConfiguration } from 'vuetify-nuxt-module/custom-configuration';
+import '@mdi/font/css/materialdesignicons.css'; // Ensure you are using css-loader
+import useSettings from './src/components/ui/settings/composables/useSettings';
+import { VFileUpload } from 'vuetify/labs/VFileUpload';
 
 const { settings } = useSettings();
 
-const dark: ThemeDefinition = {
-  dark: true,
-  colors: {
-    'primary': '#1173d4',
-    'secondary': '#424242',
-    'accent': '#82B1FF',
-    'error': '#FF5252',
-    'info': '#2196F3',
-    'success': '#4CAF50',
-    'warning': '#FFC107',
-    'background': '#121212',
-    'surface': '#1d1d1d',
-    'on-background': '#dcdcdc',
-    'on-surface': '#dcdcdc',
-    'sidebarPrimary': '#dddddd',
-    'sidebarBackground': '#181a1b',
-    'darkBlack': '#131415',
-    'lightGray': '#1b1818',
-  },
-};
-
 const light: ThemeDefinition = {
+  dark: false,
   colors: {
     background: '#FFFFFF',
     primary: '#1173d4',
@@ -49,9 +30,18 @@ const light: ThemeDefinition = {
   },
 };
 
-export default defineVuetifyConfiguration({
+const vuetify = createVuetify({
+  components: {
+    ...components,
+    VFileUpload,
+  },
+  directives,
   icons: {
     defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    },
   },
   theme: {
     defaultTheme: 'light',
@@ -60,3 +50,5 @@ export default defineVuetifyConfiguration({
     },
   },
 });
+
+export default vuetify;
