@@ -1,14 +1,17 @@
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { formidable } from 'formidable';
 import { promises as fs } from 'fs';
 import { XMLParser } from 'fast-xml-parser';
 
-export default defineEventHandler(async (event) => {
-  // 1. Create a new Formidable form instance
+export default async function handler(request: VercelRequest, response: VercelResponse) {
+  if (request.method !== 'POST') {
+    return response.status(405).json({ error: 'Method not allowed' });
+  }
+
   const form = formidable({});
 
   try {
-    // 2. Parse the incoming request containing the form data
-    const [fields, files] = await form.parse(event.node.req);
+    const [fields, files] = await form.parse(request);
 
     // 3. --- VALIDATION ---
     // Get the uploaded file from the files object
@@ -45,13 +48,7 @@ export default defineEventHandler(async (event) => {
       data: parsedData,
       fileName: uploadedFile.originalFilename,
     };
+  } catch (error) {
+    return response.status(500).json({ error: 'Processing failed' });
   }
-  catch (error) {
-    // Handle any errors that occur during parsing or validation
-    console.error('Upload error:', error);
-    throw createError({
-      statusCode: 500,
-      statusMessage: 'An error occurred while processing the file.',
-    });
-  }
-});
+};
