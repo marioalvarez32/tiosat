@@ -1,5 +1,5 @@
-import type { CExportacion, CFormaPago, CMetodoPago, CMoneda, CTipoDeComprobante, CCodigoPostal, CTipoRelacion, CClaveProdServ, CClaveUnidad, CObjetoImp, CRegimenFiscal, CImpuesto, CTipoFactor, CPeriodicidad, CMeses, CUsoCFDI, CPais } from 'Resources/xmlTypes/www.sat.gob.mx/sitio_internet/cfd/catalogos';
-import type { Comprobante } from 'Resources/xmlTypes/www.sat.gob.mx/cfd/4';
+import type { CExportacion, CFormaPago, CMetodoPago, CMoneda, CTipoDeComprobante, CCodigoPostal, CTipoRelacion, CClaveProdServ, CClaveUnidad, CObjetoImp, CRegimenFiscal, CImpuesto, CTipoFactor, CPeriodicidad, CMeses, CUsoCFDI, CPais } from '../../resources/xmlTypes/www.sat.gob.mx/sitio_internet/cfd/catalogos';
+import type { Comprobante } from '../../resources/xmlTypes/www.sat.gob.mx/cfd/4';
 
 export class Cfdi4 {
   public readonly Fecha: Date;
