@@ -32,6 +32,7 @@
   import { ref, computed, watch } from 'vue';
   import type { FileReadingStatus } from './models/FileReadingStatus';
   import UploaderStageTable from './components/UploaderStageTable.vue';
+  import { useReceiptStore } from '@/stores/receiptStore';
 
   const selectedFileDirectory = ref<FileSystemDirectoryHandle | null>(null);
   const fileUploadingList = ref<FileReadingStatus[]>([]);
@@ -104,19 +105,21 @@
 
     // 'xmlFile' here MUST match the name expected by Formidable on the server
     formData.append('xmlFile', file.originalFile);
-    const parsedData = ref<any>(null);
     try {
       // Use the native $fetch helper from Nuxt to call our API endpoint
       const response = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
-      console.log("🚀 ~ processFile ~ response:", response);
 
+      const responseData = await response.json();
+      
       // Store the parsed data from the server's response
       //parsedData.value = response.data;
-      if(response.status === 'success') {
+      if(response.status === 200) {
         file.status = 'success';
+        const receiptStore = useReceiptStore();
+        receiptStore.addReceipt(responseData.parsedContent);
       }
 
     } catch (error: any) {

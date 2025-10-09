@@ -1,5 +1,4 @@
-import type { CExportacion, CFormaPago, CMetodoPago, CMoneda, CTipoDeComprobante, CCodigoPostal, CTipoRelacion, CClaveProdServ, CClaveUnidad, CObjetoImp, CRegimenFiscal, CImpuesto, CTipoFactor, CPeriodicidad, CMeses, CUsoCFDI, CPais } from '../../resources/xmlTypes/www.sat.gob.mx/sitio_internet/cfd/catalogos.js';
-import type { Comprobante } from '../../resources/xmlTypes/www.sat.gob.mx/cfd/4.js';
+import type { CExportacion, CFormaPago, CMetodoPago, CMoneda, CTipoDeComprobante, CCodigoPostal, CTipoRelacion, CClaveProdServ, CClaveUnidad, CObjetoImp, CRegimenFiscal, CImpuesto, CTipoFactor, CPeriodicidad, CMeses, CUsoCFDI, CPais } from '../../api/resources/xmlTypes/www.sat.gob.mx/sitio_internet/cfd/catalogos.js';
 
 export class Cfdi4 {
   public readonly Fecha: Date;

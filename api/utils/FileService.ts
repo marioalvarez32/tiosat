@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
-import type { ValidationResponse } from '../models/ValidationResponse';
-import type { Comprobante } from 'Resources/xmlTypes/www.sat.gob.mx/cfd/4';
+import type { ValidationResponse } from '../models/ValidationResponse.js';
+import type { Comprobante } from '../resources/xmlTypes/www.sat.gob.mx/cfd/4.js';
+import  { Cfdi4 } from '../models/cfdi4/Cfdi4.js';
 
 export async function parseAndvalidateCfdi(xmlFileContent: string): Promise<ValidationResponse> {
   try {
@@ -33,6 +34,10 @@ export async function parseAndvalidateCfdi(xmlFileContent: string): Promise<Vali
 
     const comprobante = xmlDoc['Comprobante'];
     if (comprobante) {
+      // Verify version 4. 
+      if(!comprobante.Version || comprobante.Version != '4') {
+        errors.push('Invalid version. Expected version 4.0');
+      }
       // Check required attributes
       const requiredAttrs = ['Version', 'Fecha', 'Sello', 'FormaPago', 'NoCertificado'];
       requiredAttrs.forEach((attr) => {
@@ -52,12 +57,13 @@ export async function parseAndvalidateCfdi(xmlFileContent: string): Promise<Vali
         errors.push('Missing required element: Conceptos');
       }
     }
-
-    if (errors.length === 0) {
-      return { isValid: true, errors: [], parsedContent: xmlDoc as Comprobante };
-    } else {
+    if(errors.length >  0) {
       return { isValid: false, errors };
     }
+    // If no errors, we convert to CFDI 4 model. 
+    const cfdi4 = new Cfdi4(comprobante);
+    return { isValid: true, errors: [], parsedContent: cfdi4 };
+   
   } catch (error) {
     return { isValid: false, errors: [error as string] };
   }
