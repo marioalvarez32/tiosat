@@ -1,18 +1,19 @@
 <template>
   <div class="sidebar">
-    <v-navigation-drawer elevation="10"
-                         permanent
-                         expand-on-hover
-                         rail
-                         rail-width="60"
-    >
+    <v-navigation-drawer permanent>
+      <div class="sidebar__header">
+        <v-icon size="30" icon="mdi-text-box-outline" color="primary"/>
+        <div class="sidebar__header-text">TIOSAT</div>
+      </div>
       <v-list :lines="false" density="default" nav class="sidebar__nav-list">
         <template v-for="menuItem in navigationItems" :key="menuItem.Path">
-          <v-list-item :to="menuItem.Path" :active="isCurrentPage(menuItem.Path)" color="primary">
+          <v-list-item :to="menuItem.Path" :active="isCurrentPage(menuItem.Path)" color="primary" rounded="xl">
             <template #prepend>
-              <v-icon size="30" :icon="menuItem.Icon" />
+              <v-icon size="25" :icon="menuItem.Icon" />
             </template>
+          
             <v-list-item-title v-text="menuItem.Text" />
+          
           </v-list-item>
         </template>
         <div class="sidebar__setting-icon-wrapper">
@@ -74,6 +75,18 @@
 .sidebar {
 }
 
+.sidebar__header {
+	padding: 15px 20px;
+	display: flex;
+	align-items: center;
+	gap: 25px;
+}
+
+.sidebar__header-text {
+	font-size: 20px;
+	font-weight: 500;
+}
+
 :deep(.v-navigation-drawer) {
 	background-color: rgb(var(--v-theme-sidebarBackground));
 	font-weight: 200;
@@ -81,7 +94,7 @@
 }
 
 :deep(.v-navigation-drawer__content) {
-	margin-top: 50px;
+	margin-top: 25px;
 }
 
 :deep(.v-list-item-title) {
@@ -97,7 +110,6 @@
 :deep(.v-list.v-list--nav) {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
 	gap: 5px;
 }
 
@@ -109,5 +121,15 @@
 	display: flex;
 	align-items: flex-end;
 	height: 100%;
+}
+
+.sidebar__nav-item {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+:deep(.v-list-item__prepend) {
+  display:block;
 }
 </style>

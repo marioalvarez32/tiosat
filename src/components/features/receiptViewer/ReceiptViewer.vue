@@ -31,9 +31,6 @@
       <ReceiptCard label="Revisar"
                    value="15"
       />
-      <ReceiptCard label="Lorem Ipsum"
-                   value="1231"
-      />
     </div>
     <v-sheet class="receipts__action-bar">
       <v-text-field v-model="search"
