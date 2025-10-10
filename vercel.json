@@ -1,3 +1,7 @@
 {
-    
+	"functions": {
+		"api/**/*.ts": {
+			"excludeFiles": "{models/**,resources/**,utils/**}"
+		}
+	}
 }
