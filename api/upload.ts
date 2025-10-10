@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { formidable } from 'formidable';
 import { promises as fs } from 'fs';
-import { createResponse } from './utils/ResponseUtils.js';
-import { parseAndvalidateCfdi } from './utils/FileService.js';
+import { createResponse } from '../shared/utils/ResponseUtils.js';
+import { parseAndvalidateCfdi } from '../shared/utils/FileService.js';
 
 export default async function handler(request: VercelRequest, response: VercelResponse) {
   if (request.method !== 'POST') {
