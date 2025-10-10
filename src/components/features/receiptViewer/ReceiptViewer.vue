@@ -22,18 +22,22 @@
       </div>
     </div>
     <div class="receipts__summary">
-      <ReceiptCard label="Receipts"
-                   value="850"
+      <ReceiptCard label="Subtotal"
+                   :value="subTotalFormatted"
       />
       <ReceiptCard label="Total"
-                   value="$3,850"
+                   :value="totalFormatted"
       />
       <ReceiptCard label="Revisar"
                    value="15"
       />
+      <ReceiptCard label="Lorem Ipsum"
+                   value="1231"
+      />
     </div>
     <v-sheet class="receipts__action-bar">
-      <v-text-field class="receipts__action-bar__search"
+      <v-text-field v-model="search"
+                    class="receipts__action-bar__search"
                     append-inner-icon="mdi-magnify"
                     density="compact"
                     label="Buscar ingreso por Folio, UUID, RFC"
@@ -51,7 +55,7 @@
       </v-btn>
     </v-sheet>
     <v-sheet class="receipts__table">
-      <ReceiptsTable />
+      <ReceiptsTable :items="receiptStore.receipts" :search="search"/>
     </v-sheet>
 
   </div>
@@ -59,12 +63,24 @@
 
 
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import { ReceiptsViews } from './enums/ReceiptsViews';
   import ReceiptCard from './components/ReceiptCard.vue';
   import ReceiptsTable from './components/ReceiptsTable.vue';
+  import { useReceiptStore } from '@/stores/receiptStore';
+  import { formatCurrency } from '@/utils/CurrencyFormatting';
 
   const selectedView = ref(ReceiptsViews.INGRESOS);
+  const receiptStore = useReceiptStore();
+
+  const totalFormatted = computed(() => {
+    return formatCurrency(receiptStore.total);
+  });
+  const subTotalFormatted = computed(() => {
+    return formatCurrency(receiptStore.subTotal);
+  });
+  const search = ref('');
+
 </script>
 
 <style scoped>
@@ -74,6 +90,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    overflow: hidden;
 }
 
 .receipts__header{
@@ -116,5 +133,6 @@
 
 .receipts__table {
     flex: 1;
+    overflow-y: auto;
 }
 </style>

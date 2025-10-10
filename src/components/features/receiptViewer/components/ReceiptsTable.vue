@@ -11,53 +11,43 @@
   import { ref } from 'vue';
   import type { DataTableHeader } from 'vuetify';
 
+  const props = defineProps({
+    items: {
+      type: Array,
+      required: true
+    },
+    search: {
+      type: String,
+      default: ''
+    }
+  });
+
   const headers = ref<DataTableHeader[]>([
     {
-      title: 'UUID',
+      title: 'Folio',
       align: 'start',
-      key: 'uuid',
+      key: 'Folio',
       sortable: false,
     },
     {
       title: 'Fecha',
       align: 'start',
-      key: 'date',
-      sortable: false,
-    },
-    {
-      title: 'Issuer',
-      align: 'start',
-      key: 'issuer',
-      sortable: false,
-    },
-    {
-      title: 'Type',
-      align: 'start',
-      key: 'type',
-      sortable: false,
-    },
-    {
-      title: 'Type',
-      align: 'start',
-      key: 'type',
+      key: 'Fecha',
       sortable: false,
     },
     {
       title: 'Subtotal',
       align: 'start',
-      key: 'subtotal',
+      key: 'SubTotal',
       sortable: false,
     },
     {
       title: 'Total',
       align: 'start',
-      key: 'total',
+      key: 'Total',
       sortable: false,
     },
   ]);
-  const items = ref([]);
-  const search = ref('');
-
   
 </script>
 
