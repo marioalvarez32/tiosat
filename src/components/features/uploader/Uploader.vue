@@ -1,13 +1,11 @@
 <template>
   <div class="uploader">
     <div class="uploader__dropzone">
-      <h1>Cargar CFDI</h1>
-      <v-file-upload v-model="draggedFiles" density="default">
-        <template #browse>
-          <v-btn color="primary" size="large" variant="elevated" @click="openDirectoryPicker">Seleccionar directorio</v-btn>
-        </template>
-        <template #item></template>
-      </v-file-upload>
+      <div>
+        <h2 class="text-h6 font-weight-bold">Cargar CFDI</h2>
+        <p class="text-grey-darken-1">Arrastra y suelta tus archivos XML o usa los botones para seleccionarlos. Formatos aceptados: CFDI v4.0</p>
+      </div>
+      <UploaderDropzone @handle-added-files="handleAddedFiles"/>
     </div>
     <div class="uploader__stage">
       <div class="uploader__stage-header">
@@ -33,40 +31,14 @@
   import type { FileReadingStatus } from './models/FileReadingStatus';
   import UploaderStageTable from './components/UploaderStageTable.vue';
   import { useReceiptStore } from '@/stores/receiptStore';
+  import UploaderDropzone from './components/UploaderDropzone.vue';
 
-  const selectedFileDirectory = ref<FileSystemDirectoryHandle | null>(null);
   const fileUploadingList = ref<FileReadingStatus[]>([]);
   const processingLimit = ref(5);
-  const draggedFiles = ref<File[]>([]);
   
   const shouldDisableProcessingButton = computed(() => {
     return fileUploadingList.value.some(f => f.status === 'loading') || !fileUploadingList.value.some(f => f.status === 'pending');
   });
-
-  async function openDirectoryPicker() {
-    try {
-      const directoryHandle = await window.showDirectoryPicker();
-      const files = await getFilesFromDirectory(directoryHandle);
-      handleAddedFiles(files, directoryHandle);
-    }
-    catch (error) {
-      // The user canceled the dialog, so we can safely ignore the error.
-      if (error.name !== 'AbortError') {
-        console.error('Error reading directory:', error);
-      }
-    }
-  }
-
-  async function getFilesFromDirectory(directoryHandle: FileSystemDirectoryHandle): Promise<File[]> {
-    const files: File[] = [];
-    for await (const entry of directoryHandle.values()) {
-      if (entry.kind === 'file') {
-        const file = await entry.getFile();
-        files.push(file);
-      }
-    }
-    return files;
-  }
 
   function handleAddedFiles(files: File[], directoryHandle?: FileSystemDirectoryHandle) {
     const xmlFiles = files
@@ -132,11 +104,6 @@
     }
 
   }
-
-  watch(draggedFiles, () => {
-    // check if file is in fileUPloadingList
-    handleAddedFiles(draggedFiles.value);
-  });
 </script>
 
 <style scoped>
@@ -152,7 +119,7 @@
 .uploader__dropzone {
  display: flex;
  flex-direction: column;
- gap: 20px;
+ gap: 15px;
  flex-basis: 40%;
 }
 

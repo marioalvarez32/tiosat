@@ -1,23 +1,43 @@
 // @ts-check
-import stylistic from '@stylistic/eslint-plugin';
+import { globalIgnores } from 'eslint/config';
+import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
 import pluginVue from 'eslint-plugin-vue';
-import typescript from '@typescript-eslint/eslint-plugin';
-import typescriptParser from '@typescript-eslint/parser';
-import vueParser from 'vue-eslint-parser';
+import pluginVitest from '@vitest/eslint-plugin';
+import pluginPlaywright from 'eslint-plugin-playwright';
+import stylistic from '@stylistic/eslint-plugin';
 
-export default [
+// To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
+// import { configureVueProject } from '@vue/eslint-config-typescript'
+// configureVueProject({ scriptLangs: ['ts', 'tsx'] })
+// More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
+
+export default defineConfigWithVueTs(
   {
-    files: ['**/*.{js,mjs,cjs,ts}'],
+    name: 'app/files-to-lint',
+    files: ['**/*.{ts,mts,tsx,vue}'],
+  },
+
+  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+
+  pluginVue.configs['flat/essential'],
+  vueTsConfigs.recommended,
+
+  {
+    ...pluginVitest.configs.recommended,
+    files: ['src/**/__tests__/*'],
+  },
+
+  {
+    ...pluginPlaywright.configs['flat/recommended'],
+    files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
+  },
+
+  // Style rules for JS/TS files
+  {
+    name: 'app/style-rules',
+    files: ['**/*.{js,mjs,cjs,ts,mts,tsx}'],
     plugins: {
       stylistic,
-      '@typescript-eslint': typescript,
-    },
-    languageOptions: {
-      parser: typescriptParser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
     },
     rules: {
       'semi': ['error'],
@@ -36,22 +56,15 @@ export default [
       'comma-dangle': ['error', 'always-multiline'],
     },
   },
+
+  // Style rules for Vue files
   {
+    name: 'app/vue-style-rules',
     files: ['**/*.vue'],
     plugins: {
-      vue: pluginVue,
       stylistic,
     },
-    languageOptions: {
-      parser: vueParser,
-      parserOptions: {
-        parser: typescriptParser,
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
-    },
     rules: {
-      ...pluginVue.configs.recommended.rules,
       'semi': ['error'],
       'vue/html-indent': ['error', 2],
       'vue/max-attributes-per-line': ['error', {
@@ -64,9 +77,8 @@ export default [
         singleline: 'beside',
         multiline: 'beside',
       }],
-      'vue/html-quotes': ['error', 'single'],
+      'vue/html-quotes': ['error', 'double'],
       'vue/script-indent': ['error', 2, { baseIndent: 1 }],
-      'vue/html-quotes': ['error', 'double'], // or 'single'
     },
   },
-];
+);

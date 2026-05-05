@@ -18,3 +18,7 @@ body,
 
   font-family: 'Roboto', sans-serif;
 }
+
+.secondary-text {
+  color: var(--color-text-secondary);
+}

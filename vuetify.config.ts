@@ -25,8 +25,6 @@ const light: ThemeDefinition = {
     onSurface: '#000000',
     sidebarPrimary: '#3b3b3b',
     sidebarBackground: '#fdfdfd',
-    'grey-lighten-2': '#E0E0E0',
-    'grey-lighten-3': '#EEEEEE',
   },
 };
 

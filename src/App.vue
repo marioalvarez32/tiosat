@@ -22,7 +22,7 @@
     },
     setup() {
       const { session, user } = useSupabaseSession();
-
+      
       return {
         user,
         session,

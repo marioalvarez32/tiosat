@@ -1,6 +1,6 @@
 <template>
   <div class="uploader-stage-table">
-    <v-table >
+    <v-table>
       <thead>
         <tr>
           <th class="text-left">
